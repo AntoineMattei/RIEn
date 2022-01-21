@@ -146,3 +146,12 @@ index 9aa2b2f..321400c 100644
 \ No newline at end of file
 
 
+Commande git status le 21/01/2022 a 15:12:04,81 :
+
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+
