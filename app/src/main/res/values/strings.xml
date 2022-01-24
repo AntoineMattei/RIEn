@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">RIEn</string>
     <string name="rechercher_une_entreprise">Rechercher une entreprise</string>
-    <string name="nom_de_l_entreprise">Rechercher une entreprise</string>
+    <string name="nom_de_l_entreprise">Ville, nom de l\'entreprise, …</string>
     <string name="rechercher">Rechercher</string>
+    <string name="code_postal">Code postal</string>
+    <string name="d_partement">Département</string>
+    <string name="afficher_les_options_suppl_mentaires">Afficher les options supplémentaires</string>
+    <string name="bienvenue_sur_rien">Bienvenue sur RIEn</string>
+    <string name="logo_de_l_application">Logo de l\'application</string>
 </resources>

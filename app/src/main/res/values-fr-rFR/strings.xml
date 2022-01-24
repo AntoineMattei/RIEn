@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="app_name">RIEn</string>
-    <string name="rechercher_une_entreprise">Rechercher une entreprise</string>
-    <string name="nom_de_l_entreprise">Nom de l\'entreprise</string>
-    <string name="rechercher">Rechercher</string>
-</resources>

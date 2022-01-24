@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RIEn">
         <activity
+            android:name=".LauncherActivity"
+            android:exported="true" />
+        <activity
             android:name=".RechercheParDepartementActivity"
             android:exported="true">
             <intent-filter>

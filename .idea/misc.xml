@@ -3,7 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Documents/1. Cours/esimed/Annee1/Projets/Android/RIEn/app/src/main/res/drawable/RIEn_background.xml" value="0.37864583333333335" />
+        <entry key="..\:/Documents/1. Cours/esimed/Annee1/Projets/Android/RIEn/app/src/main/res/drawable/RIEn_foreground.xml" value="0.37864583333333335" />
+        <entry key="..\:/Documents/1. Cours/esimed/Annee1/Projets/Android/RIEn/app/src/main/res/layout/activity_launcher.xml" value="0.3484375" />
         <entry key="..\:/Documents/1. Cours/esimed/Annee1/Projets/Android/RIEn/app/src/main/res/layout/activity_main.xml" value="0.3484375" />
+        <entry key="..\:/Documents/1. Cours/esimed/Annee1/Projets/Android/RIEn/app/src/main/res/layout/activity_recherche_par_departement.xml" value="0.5" />
       </map>
     </option>
   </component>

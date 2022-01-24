@@ -164,3 +164,39 @@ Your branch is ahead of 'origin/main' by 1 commit.
 nothing to commit, working tree clean
 
 
+Commande git status le 24/01/2022 a  9:16:43,77 :
+
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	modified:   .idea/gradle.xml
+	modified:   .idea/misc.xml
+	modified:   app/build.gradle
+	modified:   app/src/main/AndroidManifest.xml
+	new file:   app/src/main/RIEn-playstore.png
+	new file:   app/src/main/java/esimed/amattei/examen/rien/LauncherActivity.kt
+	modified:   app/src/main/java/esimed/amattei/examen/rien/RechercheParDepartementActivity.kt
+	new file:   app/src/main/res/drawable/RIEn_background.xml
+	new file:   app/src/main/res/drawable/RIEn_foreground.xml
+	new file:   app/src/main/res/drawable/ic_rien.xml
+	new file:   app/src/main/res/layout/activity_launcher.xml
+	modified:   app/src/main/res/layout/activity_recherche_par_departement.xml
+	new file:   app/src/main/res/mipmap-anydpi-v26/RIEn.xml
+	new file:   app/src/main/res/mipmap-anydpi-v26/RIEn_round.xml
+	new file:   app/src/main/res/mipmap-hdpi/RIEn.png
+	new file:   app/src/main/res/mipmap-hdpi/RIEn_round.png
+	new file:   app/src/main/res/mipmap-mdpi/RIEn.png
+	new file:   app/src/main/res/mipmap-mdpi/RIEn_round.png
+	new file:   app/src/main/res/mipmap-xhdpi/RIEn.png
+	new file:   app/src/main/res/mipmap-xhdpi/RIEn_round.png
+	new file:   app/src/main/res/mipmap-xxhdpi/RIEn.png
+	new file:   app/src/main/res/mipmap-xxhdpi/RIEn_round.png
+	new file:   app/src/main/res/mipmap-xxxhdpi/RIEn.png
+	new file:   app/src/main/res/mipmap-xxxhdpi/RIEn_round.png
+	deleted:    app/src/main/res/values-fr-rFR/strings.xml
+	modified:   app/src/main/res/values/strings.xml
+
+
+
