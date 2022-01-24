@@ -3,9 +3,21 @@
     <string name="rechercher_une_entreprise">Rechercher une entreprise</string>
     <string name="nom_de_l_entreprise">Ville, nom de l\'entreprise, …</string>
     <string name="rechercher">Rechercher</string>
+    <string name="rechercher_par_code_postal">Recherche par code postal</string>
     <string name="code_postal">Code postal</string>
-    <string name="d_partement">Département</string>
+    <string name="rechercher_par_departement">Recherche par département</string>
+    <string name="departement">Numéro du département</string>
     <string name="afficher_les_options_suppl_mentaires">Afficher les options supplémentaires</string>
     <string name="bienvenue_sur_rien">Bienvenue sur RIEn</string>
     <string name="logo_de_l_application">Logo de l\'application</string>
+    <string name="test">Test</string>
+    <string name="recherche_par_activite">Recherche par activité</string>
+    <string name="recherche_par_code_naf">Recherche par Code NAF</string>
+    <string name="activite">Activité</string>
+    <string name="code_naf">Code NAF</string>
+    <string name="informations">Informations</string>
+    <string name="information">Information</string>
+    <string name="long_app_name">Recherche sur les Informations d\'Entreprise</string>
+    <string name="credits">Créée par Antoine Mattei</string>
+    <string name="version_number">Version 1.0</string>
 </resources>

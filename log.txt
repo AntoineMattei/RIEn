@@ -200,3 +200,128 @@ Changes to be committed:
 
 
 
+Commande git status le 24/01/2022 a  9:17:07,95 :
+
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+
+Commande git status le 24/01/2022 a 10:08:59,20 :
+
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   app/build.gradle
+	modified:   app/src/main/AndroidManifest.xml
+	modified:   app/src/main/java/esimed/amattei/examen/rien/LauncherActivity.kt
+	modified:   app/src/main/java/esimed/amattei/examen/rien/RechercheParDepartementActivity.kt
+	modified:   app/src/main/res/layout/activity_launcher.xml
+	modified:   app/src/main/res/values/colors.xml
+	modified:   log.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+
+Commande git status le 24/01/2022 a 12:51:49,95 :
+
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	new file:   app/src/main/java/esimed/amattei/examen/rien/HomeActivity.kt
+	renamed:    app/src/main/java/esimed/amattei/examen/rien/RechercheParDepartementActivity.kt -> app/src/main/java/esimed/amattei/examen/rien/RechercheParEntrepriseActivity.kt
+	new file:   app/src/main/logo_appli-playstore.png
+	renamed:    app/src/main/res/drawable/RIEn_background.xml -> app/src/main/res/drawable/logo_appli_background.xml
+	renamed:    app/src/main/res/drawable/RIEn_foreground.xml -> app/src/main/res/drawable/logo_appli_foreground.xml
+	new file:   app/src/main/res/drawable/recherche_par_activite.png
+	new file:   app/src/main/res/drawable/recherche_par_entreprise.png
+	new file:   app/src/main/res/layout/activity_home.xml
+	renamed:    app/src/main/res/layout/activity_recherche_par_departement.xml -> app/src/main/res/layout/activity_recherche_par_entreprise.xml
+	deleted:    app/src/main/res/mipmap-anydpi-v26/RIEn.xml
+	deleted:    app/src/main/res/mipmap-anydpi-v26/RIEn_round.xml
+	new file:   app/src/main/res/mipmap-anydpi-v26/logo_appli.xml
+	new file:   app/src/main/res/mipmap-anydpi-v26/logo_appli_round.xml
+	renamed:    app/src/main/res/mipmap-hdpi/RIEn.png -> app/src/main/res/mipmap-hdpi/logo_appli.png
+	renamed:    app/src/main/res/mipmap-hdpi/RIEn_round.png -> app/src/main/res/mipmap-hdpi/logo_appli_round.png
+	renamed:    app/src/main/res/mipmap-mdpi/RIEn.png -> app/src/main/res/mipmap-mdpi/logo_appli.png
+	renamed:    app/src/main/res/mipmap-mdpi/RIEn_round.png -> app/src/main/res/mipmap-mdpi/logo_appli_round.png
+	renamed:    app/src/main/res/mipmap-xhdpi/RIEn.png -> app/src/main/res/mipmap-xhdpi/logo_appli.png
+	renamed:    app/src/main/res/mipmap-xhdpi/RIEn_round.png -> app/src/main/res/mipmap-xhdpi/logo_appli_round.png
+	renamed:    app/src/main/res/mipmap-xxhdpi/RIEn.png -> app/src/main/res/mipmap-xxhdpi/logo_appli.png
+	renamed:    app/src/main/res/mipmap-xxhdpi/RIEn_round.png -> app/src/main/res/mipmap-xxhdpi/logo_appli_round.png
+	renamed:    app/src/main/res/mipmap-xxxhdpi/RIEn.png -> app/src/main/res/mipmap-xxxhdpi/logo_appli.png
+	renamed:    app/src/main/res/mipmap-xxxhdpi/RIEn_round.png -> app/src/main/res/mipmap-xxxhdpi/logo_appli_round.png
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   .idea/misc.xml
+	modified:   app/build.gradle
+	modified:   app/src/main/AndroidManifest.xml
+	modified:   app/src/main/java/esimed/amattei/examen/rien/HomeActivity.kt
+	modified:   app/src/main/java/esimed/amattei/examen/rien/LauncherActivity.kt
+	modified:   app/src/main/java/esimed/amattei/examen/rien/RechercheParEntrepriseActivity.kt
+	modified:   app/src/main/res/layout/activity_home.xml
+	modified:   app/src/main/res/layout/activity_launcher.xml
+	modified:   app/src/main/res/layout/activity_recherche_par_entreprise.xml
+	modified:   app/src/main/res/values/colors.xml
+	modified:   app/src/main/res/values/strings.xml
+	modified:   log.txt
+
+
+
+Commande git status le 24/01/2022 a 15:47:18,83 :
+
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	new file:   .idea/deploymentTargetDropDown.xml
+	modified:   .idea/misc.xml
+	modified:   app/build.gradle
+	modified:   app/src/main/AndroidManifest.xml
+	new file:   app/src/main/java/esimed/amattei/examen/rien/HomeActivity.kt
+	new file:   app/src/main/java/esimed/amattei/examen/rien/InfoActivity.kt
+	modified:   app/src/main/java/esimed/amattei/examen/rien/LauncherActivity.kt
+	new file:   app/src/main/java/esimed/amattei/examen/rien/RechercheParActiviteActivity.kt
+	deleted:    app/src/main/java/esimed/amattei/examen/rien/RechercheParDepartementActivity.kt
+	new file:   app/src/main/java/esimed/amattei/examen/rien/RechercheParEntrepriseActivity.kt
+	new file:   app/src/main/logo_appli-playstore.png
+	new file:   app/src/main/res/drawable/ic_info.xml
+	renamed:    app/src/main/res/drawable/RIEn_background.xml -> app/src/main/res/drawable/logo_appli_background.xml
+	renamed:    app/src/main/res/drawable/RIEn_foreground.xml -> app/src/main/res/drawable/logo_appli_foreground.xml
+	new file:   app/src/main/res/drawable/recherche_par_activite.png
+	new file:   app/src/main/res/drawable/recherche_par_entreprise.png
+	new file:   app/src/main/res/layout/activity_home.xml
+	new file:   app/src/main/res/layout/activity_info.xml
+	modified:   app/src/main/res/layout/activity_launcher.xml
+	new file:   app/src/main/res/layout/activity_recherche_par_activite.xml
+	renamed:    app/src/main/res/layout/activity_recherche_par_departement.xml -> app/src/main/res/layout/activity_recherche_par_entreprise.xml
+	deleted:    app/src/main/res/mipmap-anydpi-v26/RIEn.xml
+	deleted:    app/src/main/res/mipmap-anydpi-v26/RIEn_round.xml
+	new file:   app/src/main/res/mipmap-anydpi-v26/logo_appli.xml
+	new file:   app/src/main/res/mipmap-anydpi-v26/logo_appli_round.xml
+	renamed:    app/src/main/res/mipmap-hdpi/RIEn.png -> app/src/main/res/mipmap-hdpi/logo_appli.png
+	renamed:    app/src/main/res/mipmap-hdpi/RIEn_round.png -> app/src/main/res/mipmap-hdpi/logo_appli_round.png
+	renamed:    app/src/main/res/mipmap-mdpi/RIEn.png -> app/src/main/res/mipmap-mdpi/logo_appli.png
+	renamed:    app/src/main/res/mipmap-mdpi/RIEn_round.png -> app/src/main/res/mipmap-mdpi/logo_appli_round.png
+	renamed:    app/src/main/res/mipmap-xhdpi/RIEn.png -> app/src/main/res/mipmap-xhdpi/logo_appli.png
+	renamed:    app/src/main/res/mipmap-xhdpi/RIEn_round.png -> app/src/main/res/mipmap-xhdpi/logo_appli_round.png
+	renamed:    app/src/main/res/mipmap-xxhdpi/RIEn.png -> app/src/main/res/mipmap-xxhdpi/logo_appli.png
+	renamed:    app/src/main/res/mipmap-xxhdpi/RIEn_round.png -> app/src/main/res/mipmap-xxhdpi/logo_appli_round.png
+	renamed:    app/src/main/res/mipmap-xxxhdpi/RIEn.png -> app/src/main/res/mipmap-xxxhdpi/logo_appli.png
+	renamed:    app/src/main/res/mipmap-xxxhdpi/RIEn_round.png -> app/src/main/res/mipmap-xxxhdpi/logo_appli_round.png
+	modified:   app/src/main/res/values/colors.xml
+	modified:   app/src/main/res/values/strings.xml
+	modified:   log.txt
+
+
+
