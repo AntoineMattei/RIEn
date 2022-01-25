@@ -325,3 +325,12 @@ Changes to be committed:
 
 
 
+Commande git status le 24/01/2022 a 15:49:07,79 :
+
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+

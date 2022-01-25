@@ -30,7 +30,7 @@
             tools:ignore="Autofill" />
 
         <ImageButton
-            android:id="@+id/button"
+            android:id="@+id/buttonRechercheParEntrepriseButtonSearch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -89,4 +89,14 @@
             tools:ignore="Autofill" />
     </RadioGroup>
 
+    <ProgressBar
+        android:id="@+id/progressBarRechercheParEntrepriseActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <ListView
+        android:id="@+id/listResultRechercheParActiviteActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 </TableLayout>

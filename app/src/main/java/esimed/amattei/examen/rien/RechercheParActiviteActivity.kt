@@ -1,11 +1,23 @@
 package esimed.amattei.examen.rien
 
 import android.annotation.SuppressLint
+import android.app.Activity
+import android.app.AlertDialog
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.InputMethodManager
+import android.widget.*
 import androidx.core.view.isVisible
+import esimed.amattei.examen.rien.model.Etablissement
 import kotlinx.android.synthetic.main.activity_recherche_par_activite.*
+import retrofit2.Callback
+import esimed.amattei.examen.rien.model.Result
+import retrofit2.Call
+import retrofit2.Response
+import java.util.*
 
 class RechercheParActiviteActivity : AppCompatActivity() {
     @SuppressLint("SetTextI18n")
@@ -34,5 +46,83 @@ class RechercheParActiviteActivity : AppCompatActivity() {
             RechercheParActiviteActivityEditTextActivite.visibility = View.GONE
             RechercheParActiviteActivityEditTextCodeNAF.visibility = View.VISIBLE
         }
+        val svc = EntrepriseService()
+        buttonRechercheParActiviteButtonSearch.setOnClickListener {
+            val query = editTextRechercheParActiviteVilleNomEntreprise.text.toString()
+                .lowercase(Locale.getDefault())
+                .replace(" ", "_")
+                .replace("à", "a")
+                .replace("â", "a")
+                .replace("æ", "ae")
+                .replace("ç", "c")
+                .replace("é", "e")
+                .replace("è", "e")
+                .replace("ê", "e")
+                .replace("ë", "e")
+                .replace("î", "i")
+                .replace("ï", "i")
+                .replace("ô", "o")
+                .replace("œ", "oe")
+                .replace("ù", "u")
+                .replace("û", "u")
+                .replace("ü", "u")
+                .replace("ÿ", "y")
+            hideKeyboard()
+            Thread(Runnable {
+                runOnUiThread {
+                    progressBarRechercheParActiviteActivity.visibility = View.VISIBLE
+                    listResultRechercheParActiviteActivity.visibility = View.INVISIBLE
+                }
+                svc.query(query, object : Callback<Result> {
+                    override fun onResponse(call: Call<Result>?, response: Response<Result>?) {
+                        if (response!!.code() == 200) {                             // Demander au prof
+                            runOnUiThread {
+                                listResultRechercheParActiviteActivity.adapter =
+                                    ArrayAdapter<Etablissement>(
+                                        this@RechercheParActiviteActivity,
+                                        android.R.layout.simple_list_item_1,
+                                        android.R.id.text1,
+                                        response.body()!!.etablissement!!
+                                    )
+                                progressBarRechercheParActiviteActivity.visibility = View.GONE
+                                listResultRechercheParActiviteActivity.visibility = View.VISIBLE
+                            }
+                        }
+                    }
+
+                    override fun onFailure(call: Call<Result>?, t: Throwable?) {
+                        val builder = AlertDialog.Builder(this@RechercheParActiviteActivity)
+                        builder.setMessage("Problème lors de l'appel au service Web")
+                        builder.create().show()
+                    }
+                })
+            }).start()
+
+            listResultRechercheParActiviteActivity.setOnItemClickListener { parent, view, position, id ->
+                val item = listResultRechercheParActiviteActivity
+                    .adapter
+                    .getItem(position) as Etablissement
+
+                val intent = Intent(
+                    this,
+                    EntrepriseActivity::class.java
+                )
+                intent.putExtra(
+                    "entreprise",
+                    item
+                )
+                startActivity(intent)
+            }
+        }
+    }
+
+    fun Activity.hideKeyboard() {
+        hideKeyboard(currentFocus ?: View(this))
+    }
+
+    fun Context.hideKeyboard(view: View) {
+        val InputMethodManager =
+            getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        InputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 }

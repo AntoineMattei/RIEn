@@ -20,4 +20,13 @@
     <string name="long_app_name">Recherche sur les Informations d\'Entreprise</string>
     <string name="credits">Créée par Antoine Mattei</string>
     <string name="version_number">Version 1.0</string>
+    <string name="title_activity_entreprise">EntrepriseActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="resultat_de_votre_recherche">Résultat de votre recherche</string>
+    <string name="date_de_la_creation_de_l_entreprise">Date de création de l\'entreprise : %s</string>
+    <string name="nom_de_lentreprise">Nom : %s</string>
+    <string name="activite_de_l_entreprise">Activité : %s</string>
+    <string name="entreprise_active">Active : %s</string>
+    <string name="code_postal_de_l_entreprise">Code postal : %s</string>
 </resources>

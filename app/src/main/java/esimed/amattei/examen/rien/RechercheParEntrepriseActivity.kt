@@ -34,5 +34,7 @@ class RechercheParEntrepriseActivity : AppCompatActivity() {
             RechercheParEntrepriseActivityEditTextCodePostal.visibility = View.GONE
             RechercheParEntrepriseActivityEditTextDepartement.visibility = View.VISIBLE
         }
+
+
     }
 }
