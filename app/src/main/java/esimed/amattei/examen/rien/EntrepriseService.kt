@@ -20,4 +20,52 @@ class EntrepriseService {
         val call: Call<Result> = api.search(query)
         call.enqueue(callback)
     }
+
+    fun queryByActivite(query: String, activite: String, callback: Callback<Result>) {
+        val retrofit: Retrofit = Retrofit
+            .Builder()
+            .baseUrl(apiUrl)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        val api: EntrepriseAPI = retrofit.create(EntrepriseAPI::class.java)
+
+        val call: Call<Result> = api.searchByActivite(query, activite)
+        call.enqueue(callback)
+    }
+
+    fun queryByCodeNaf(query: String, codeNaf: String, callback: Callback<Result>) {
+        val retrofit: Retrofit = Retrofit
+            .Builder()
+            .baseUrl(apiUrl)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        val api: EntrepriseAPI = retrofit.create(EntrepriseAPI::class.java)
+
+        val call: Call<Result> = api.searchByCodeNaf(query, codeNaf)
+        call.enqueue(callback)
+    }
+
+    fun queryByDepartement(query: String, departement: String, callback: Callback<Result>) {
+        val retrofit: Retrofit = Retrofit
+            .Builder()
+            .baseUrl(apiUrl)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        val api: EntrepriseAPI = retrofit.create(EntrepriseAPI::class.java)
+
+        val call: Call<Result> = api.searchByDepartement(query, departement)
+        call.enqueue(callback)
+    }
+
+    fun queryByCodePostal(query: String, codePostal: String, callback: Callback<Result>) {
+        val retrofit: Retrofit = Retrofit
+            .Builder()
+            .baseUrl(apiUrl)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        val api: EntrepriseAPI = retrofit.create(EntrepriseAPI::class.java)
+
+        val call: Call<Result> = api.searchByCodePostal(query, codePostal)
+        call.enqueue(callback)
+    }
 }

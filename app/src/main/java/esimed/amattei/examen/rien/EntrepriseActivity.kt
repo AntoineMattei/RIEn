@@ -9,8 +9,10 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import esimed.amattei.examen.rien.entities.EntrepriseEntity
 import esimed.amattei.examen.rien.model.Etablissement
 import kotlinx.android.synthetic.main.activity_entreprise.*
+import java.util.*
 
 class EntrepriseActivity : AppCompatActivity(), OnMapReadyCallback {
     lateinit var entreprise: Etablissement
@@ -19,12 +21,31 @@ class EntrepriseActivity : AppCompatActivity(), OnMapReadyCallback {
         setContentView(R.layout.activity_entreprise)
 
         entreprise = intent.getSerializableExtra("entreprise") as Etablissement
+
+        val entrepriseEntity = EntrepriseEntity(
+            entreprise.siret!!,
+            entreprise.nom_raison_sociale,
+            entreprise.date_creation_entreprise,
+            entreprise.code_postal,
+            entreprise.indicateur_champ_publipostage,
+            entreprise.latitude,
+            entreprise.longitude,
+            entreprise.geo_adresse,
+            entreprise.activite_principale,
+            entreprise.libelle_activite_principale,
+            Calendar.getInstance().time
+        )
+
+        val rienDatabase = RIEnDatabase.getDatabaseRienDatabase(this)
+        val entrepriseDAO = rienDatabase.entrepriseDAO()
+        entrepriseDAO.insert(entrepriseEntity)
+
         /**
          * Affichage du nom de l'entreprise
          */
         val nomEntreprise = getString(R.string.nom_de_lentreprise)
         textViewNomEntreprise.text =
-            String.format(nomEntreprise, entreprise.nom_raison_sociale)
+            String.format(nomEntreprise, entreprise.nom_raison_sociale, entreprise.siret)
 
         /**
          * Affichage de la date de création de l'entreprise
@@ -80,6 +101,6 @@ class EntrepriseActivity : AppCompatActivity(), OnMapReadyCallback {
                 .title(entreprise.nom_raison_sociale)
         )
 
-        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(emplacement,14f))
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(emplacement, 14f))
     }
 }

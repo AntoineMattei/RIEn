@@ -46,7 +46,6 @@
         android:gravity="end"
         android:text="@string/afficher_les_options_suppl_mentaires" />
 
-
     <RadioGroup
         android:id="@+id/RadioGroupOptionsSupplementaires"
         android:layout_width="match_parent"
@@ -59,13 +58,12 @@
             android:layout_height="wrap_content"
             android:text="@string/recherche_par_activite" />
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/RechercheParActiviteActivityEditTextActivite"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/activite"
-            android:inputType="numberDecimal"
-            android:maxLength="5"
+            android:inputType="textAutoComplete"
             android:visibility="gone"
             tools:ignore="Autofill" />
 
@@ -75,14 +73,14 @@
             android:layout_height="wrap_content"
             android:text="@string/recherche_par_code_naf" />
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/RechercheParActiviteActivityEditTextCodeNAF"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:digits="0123456789ABCDEFZ"
             android:hint="@string/code_naf"
             android:inputType="textCapCharacters"
-            android:maxLength="3"
+            android:maxLength="5"
             android:visibility="gone"
             tools:ignore="Autofill" />
     </RadioGroup>

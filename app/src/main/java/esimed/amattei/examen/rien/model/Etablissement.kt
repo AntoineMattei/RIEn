@@ -59,7 +59,7 @@ class Etablissement : Serializable {
     val l7_declaree: String? = null
 
     @SerializedName("numero_voie")
-    val numero_voie: Int? = null
+    val numero_voie: String? = null
 
     @SerializedName("indice_repetition")
     val indice_repetition: String? = null
@@ -71,52 +71,52 @@ class Etablissement : Serializable {
     val libelle_voie: String? = null
 
     @SerializedName("code_postal")
-    val code_postal: Int? = null
+    val code_postal: String? = null
 
     @SerializedName("cedex")
     val cedex: String? = null
 
     @SerializedName("region")
-    val region: Int? = null
+    val region: String? = null
 
     @SerializedName("libelle_region")
     val libelle_region: String? = null
 
     @SerializedName("departement")
-    val departement: Int? = null
+    val departement: String? = null
 
     @SerializedName("arrondissement")
-    val arrondissement: Int? = null
+    val arrondissement: String? = null
 
     @SerializedName("canton")
-    val canton: Int? = null
+    val canton: String? = null
 
     @SerializedName("commune")
-    val commune: Int? = null
+    val commune: String? = null
 
     @SerializedName("libelle_commune")
     val libelle_commune: String? = null
 
     @SerializedName("departement_unite_urbaine")
-    val departement_unite_urbaine: Int? = null
+    val departement_unite_urbaine: String? = null
 
     @SerializedName("taille_unite_urbaine")
-    val taille_unite_urbaine: Int? = null
+    val taille_unite_urbaine: String? = null
 
     @SerializedName("numero_unite_urbaine")
-    val numero_unite_urbaine: Int? = null
+    val numero_unite_urbaine: String? = null
 
-    @SerializedName("etablissement_public_cooperation_intercommunale")
-    val etablissement_public_cooperation_intercommunale: Int? = null
+    @SerializedName("etablissement_public_cooperation_Stringercommunale")
+    val etablissement_public_cooperation_Stringercommunale: String? = null
 
     @SerializedName("tranche_commune_detaillee")
-    val tranche_commune_detaillee: Int? = null
+    val tranche_commune_detaillee: String? = null
 
     @SerializedName("zone_emploi")
-    val zone_emploi: Int? = null
+    val zone_emploi: String? = null
 
     @SerializedName("is_siege")
-    val is_siege: Int? = null
+    val is_siege: String? = null
 
     @SerializedName("enseigne")
     val enseigne: String? = null
@@ -127,8 +127,8 @@ class Etablissement : Serializable {
     @SerializedName("statut_prospection")
     val statut_prospection: String? = null
 
-    @SerializedName("date_introduction_base_diffusion")
-    val date_introduction_base_diffusion: Int? = null
+    @SerializedName("date_Stringroduction_base_diffusion")
+    val date_Stringroduction_base_diffusion: String? = null
 
     @SerializedName("nature_entrepreneur_individuel")
     val nature_entrepreneur_individuel: String? = null
@@ -155,16 +155,16 @@ class Etablissement : Serializable {
     val tranche_effectif_salarie_centaine_pret: String? = null
 
     @SerializedName("date_validite_effectif_salarie")
-    val date_validite_effectif_salarie: Int? = null
+    val date_validite_effectif_salarie: String? = null
 
     @SerializedName("origine_creation")
     val origine_creation: String? = null
 
     @SerializedName("date_creation")
-    val date_creation: Int? = null
+    val date_creation: String? = null
 
     @SerializedName("date_debut_activite")
-    val date_debut_activite: Int? = null
+    val date_debut_activite: String? = null
 
     @SerializedName("nature_activite")
     val nature_activite: String? = null
@@ -209,19 +209,19 @@ class Etablissement : Serializable {
     val numero_rna: String? = null
 
     @SerializedName("nic_siege")
-    val nic_siege: Int? = null
+    val nic_siege: String? = null
 
     @SerializedName("region_siege")
-    val region_siege: Int? = null
+    val region_siege: String? = null
 
     @SerializedName("departement_commune_siege")
-    val departement_commune_siege: Int? = null
+    val departement_commune_siege: String? = null
 
     @SerializedName("email")
     val email: String? = null
 
     @SerializedName("nature_juridique_entreprise")
-    val nature_juridique_entreprise: Int? = null
+    val nature_juridique_entreprise: String? = null
 
     @SerializedName("libelle_nature_juridique_entreprise")
     val libelle_nature_juridique_entreprise: String? = null
@@ -254,7 +254,7 @@ class Etablissement : Serializable {
     val tranche_effectif_salarie_entreprise_centaine_pret: String? = null
 
     @SerializedName("date_validite_effectif_salarie_entreprise")
-    val date_validite_effectif_salarie_entreprise: Int? = null
+    val date_validite_effectif_salarie_entreprise: String? = null
 
     @SerializedName("categorie_entreprise")
     val categorie_entreprise: String? = null
@@ -262,8 +262,8 @@ class Etablissement : Serializable {
     @SerializedName("date_creation_entreprise")
     val date_creation_entreprise: String? = null
 
-    @SerializedName("date_introduction_base_diffusion_entreprise")
-    val date_introduction_base_diffusion_entreprise: Int? = null
+    @SerializedName("date_Stringroduction_base_diffusion_entreprise")
+    val date_Stringroduction_base_diffusion_entreprise: String? = null
 
     @SerializedName("indice_monoactivite_entreprise")
     val indice_monoactivite_entreprise: String? = null

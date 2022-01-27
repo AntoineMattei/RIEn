@@ -334,3 +334,25 @@ Your branch is ahead of 'origin/main' by 1 commit.
 nothing to commit, working tree clean
 
 
+Commande git status le 25/01/2022 a 17:09:17,36 :
+
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+
+Commande git status le 25/01/2022 a 17:09:26,64 :
+
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   log.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+

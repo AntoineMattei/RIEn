@@ -46,7 +46,6 @@
         android:gravity="end"
         android:text="@string/afficher_les_options_suppl_mentaires" />
 
-
     <RadioGroup
         android:id="@+id/RadioGroupOptionsSupplementaires"
         android:layout_width="match_parent"
@@ -96,7 +95,7 @@
         android:visibility="gone" />
 
     <ListView
-        android:id="@+id/listResultRechercheParActiviteActivity"
+        android:id="@+id/listResultRechercheParEntrepriseActivity"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 </TableLayout>

@@ -6,14 +6,15 @@
         <entry key="..\:/Documents/1. Cours/esimed/Annee1/Projets/Android/RIEn/app/src/main/res/drawable/RIEn_background.xml" value="0.37864583333333335" />
         <entry key="..\:/Documents/1. Cours/esimed/Annee1/Projets/Android/RIEn/app/src/main/res/drawable/RIEn_foreground.xml" value="0.37864583333333335" />
         <entry key="..\:/Documents/1. Cours/esimed/Annee1/Projets/Android/RIEn/app/src/main/res/drawable/ic_info.xml" value="0.37864583333333335" />
-        <entry key="..\:/Documents/1. Cours/esimed/Annee1/Projets/Android/RIEn/app/src/main/res/layout/activity_entreprise.xml" value="0.33" />
+        <entry key="..\:/Documents/1. Cours/esimed/Annee1/Projets/Android/RIEn/app/src/main/res/layout/activity_entreprise.xml" value="0.1" />
+        <entry key="..\:/Documents/1. Cours/esimed/Annee1/Projets/Android/RIEn/app/src/main/res/layout/activity_entreprise_entity.xml" value="0.1" />
         <entry key="..\:/Documents/1. Cours/esimed/Annee1/Projets/Android/RIEn/app/src/main/res/layout/activity_home.xml" value="0.20260416666666667" />
         <entry key="..\:/Documents/1. Cours/esimed/Annee1/Projets/Android/RIEn/app/src/main/res/layout/activity_info.xml" value="0.3625" />
         <entry key="..\:/Documents/1. Cours/esimed/Annee1/Projets/Android/RIEn/app/src/main/res/layout/activity_launcher.xml" value="0.3484375" />
         <entry key="..\:/Documents/1. Cours/esimed/Annee1/Projets/Android/RIEn/app/src/main/res/layout/activity_main.xml" value="0.3484375" />
-        <entry key="..\:/Documents/1. Cours/esimed/Annee1/Projets/Android/RIEn/app/src/main/res/layout/activity_recherche_par_activite.xml" value="0.33" />
+        <entry key="..\:/Documents/1. Cours/esimed/Annee1/Projets/Android/RIEn/app/src/main/res/layout/activity_recherche_par_activite.xml" value="0.25" />
         <entry key="..\:/Documents/1. Cours/esimed/Annee1/Projets/Android/RIEn/app/src/main/res/layout/activity_recherche_par_departement.xml" value="0.5" />
-        <entry key="..\:/Documents/1. Cours/esimed/Annee1/Projets/Android/RIEn/app/src/main/res/layout/activity_recherche_par_entreprise.xml" value="0.33" />
+        <entry key="..\:/Documents/1. Cours/esimed/Annee1/Projets/Android/RIEn/app/src/main/res/layout/activity_recherche_par_entreprise.xml" value="0.25" />
         <entry key="..\:/Documents/1. Cours/esimed/Annee1/Projets/Android/RIEn/app/src/main/res/layout/fragment_maps.xml" value="0.20260416666666667" />
         <entry key="..\:/Documents/1. Cours/esimed/Annee1/Projets/Android/RIEn/app/src/main/res/menu/menu_rien.xml" value="0.3625" />
       </map>

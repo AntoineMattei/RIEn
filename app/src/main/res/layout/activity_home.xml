@@ -46,7 +46,7 @@
         android:layout_gravity="end|bottom"
         android:src="@drawable/ic_info"
         android:contentDescription="@string/information"
-        android:backgroundTint="@android:color/white"
+
         android:layout_marginTop="100dp"
         android:layout_margin="5dp" />
 
