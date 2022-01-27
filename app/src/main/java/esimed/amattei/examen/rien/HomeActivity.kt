@@ -21,5 +21,9 @@ class HomeActivity : AppCompatActivity() {
         infoFloatButton.setOnClickListener {
             startActivity(Intent(this, InfoActivity::class.java))
         }
+
+        historyFloatButton.setOnClickListener {
+            startActivity(Intent(this, HistoryActivity::class.java))
+        }
     }
 }

@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
+import androidx.annotation.NonNull
 import androidx.core.view.isVisible
 import esimed.amattei.examen.rien.entities.EntrepriseEntity
 import esimed.amattei.examen.rien.model.Etablissement

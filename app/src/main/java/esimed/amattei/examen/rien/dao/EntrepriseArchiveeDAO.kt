@@ -8,6 +8,9 @@ interface EntrepriseArchiveeDAO {
     @Query("SELECT * FROM EntrepriseArchiveeEntity")
     fun returnEntrepriseArchivee(): List<EntrepriseArchiveeEntity>
 
+    @Query("SELECT siret FROM EntrepriseArchiveeEntity")
+    fun returnSiretFromEntrepriseArchivee(): List<String>
+
     @Query("SELECT nom FROM EntrepriseArchiveeEntity WHERE siret = :siret")
     fun returnNomEntrepriseArchiveeFromSiret(siret: String): String
 

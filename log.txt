@@ -356,3 +356,544 @@ Changes not staged for commit:
 no changes added to commit (use "git add" and/or "git commit -a")
 
 
+Commande git status le 27/01/2022 a 16:07:09,61 :
+
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+
+Commande git diff le 27/01/2022 a 17:35:32,37 :
+
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+index 7d4ff88..41d1dee 100644
+--- a/.idea/misc.xml
++++ b/.idea/misc.xml
+@@ -7,7 +7,9 @@
+         <entry key="..\:/Documents/1. Cours/esimed/Annee1/Projets/Android/RIEn/app/src/main/res/drawable/RIEn_foreground.xml" value="0.37864583333333335" />
+         <entry key="..\:/Documents/1. Cours/esimed/Annee1/Projets/Android/RIEn/app/src/main/res/drawable/ic_info.xml" value="0.37864583333333335" />
+         <entry key="..\:/Documents/1. Cours/esimed/Annee1/Projets/Android/RIEn/app/src/main/res/layout/activity_entreprise.xml" value="0.1" />
++        <entry key="..\:/Documents/1. Cours/esimed/Annee1/Projets/Android/RIEn/app/src/main/res/layout/activity_entreprise_archivee.xml" value="0.3625" />
+         <entry key="..\:/Documents/1. Cours/esimed/Annee1/Projets/Android/RIEn/app/src/main/res/layout/activity_entreprise_entity.xml" value="0.1" />
++        <entry key="..\:/Documents/1. Cours/esimed/Annee1/Projets/Android/RIEn/app/src/main/res/layout/activity_history.xml" value="0.3625" />
+         <entry key="..\:/Documents/1. Cours/esimed/Annee1/Projets/Android/RIEn/app/src/main/res/layout/activity_home.xml" value="0.20260416666666667" />
+         <entry key="..\:/Documents/1. Cours/esimed/Annee1/Projets/Android/RIEn/app/src/main/res/layout/activity_info.xml" value="0.3625" />
+         <entry key="..\:/Documents/1. Cours/esimed/Annee1/Projets/Android/RIEn/app/src/main/res/layout/activity_launcher.xml" value="0.3484375" />
+diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+index 7ff40d8..d0fc66e 100644
+--- a/app/src/main/AndroidManifest.xml
++++ b/app/src/main/AndroidManifest.xml
+@@ -18,6 +18,12 @@
+         android:roundIcon="@mipmap/logo_appli_round"
+         android:supportsRtl="true"
+         android:theme="@style/Theme.RIEn">
++        <activity
++            android:name=".EntrepriseArchiveeActivity"
++            android:exported="true" />
++        <activity
++            android:name=".HistoryActivity"
++            android:exported="true" />
+         <activity
+             android:name=".EntrepriseEntityActivity"
+             android:exported="true" />
+@@ -62,4 +68,4 @@
+             android:exported="true" />
+     </application>
+ 
+-</manifest>
++</manifest>
+\ No newline at end of file
+diff --git a/app/src/main/java/esimed/amattei/examen/rien/EntrepriseArchiveeActivity.kt b/app/src/main/java/esimed/amattei/examen/rien/EntrepriseArchiveeActivity.kt
+index 6651788..54e6198 100644
+--- a/app/src/main/java/esimed/amattei/examen/rien/EntrepriseArchiveeActivity.kt
++++ b/app/src/main/java/esimed/amattei/examen/rien/EntrepriseArchiveeActivity.kt
+@@ -1,11 +1,133 @@
+ package esimed.amattei.examen.rien
+ 
++import android.app.AlertDialog
++import android.graphics.Color
+ import androidx.appcompat.app.AppCompatActivity
+ import android.os.Bundle
++import com.google.android.gms.maps.CameraUpdateFactory
++import com.google.android.gms.maps.GoogleMap
++import com.google.android.gms.maps.OnMapReadyCallback
++import com.google.android.gms.maps.SupportMapFragment
++import com.google.android.gms.maps.model.LatLng
++import com.google.android.gms.maps.model.MarkerOptions
++import esimed.amattei.examen.rien.entities.EntrepriseEntity
++import esimed.amattei.examen.rien.model.Etablissement
++import esimed.amattei.examen.rien.model.Result
++import kotlinx.android.synthetic.main.activity_entreprise.*
++import kotlinx.android.synthetic.main.activity_entreprise_entity.*
++import retrofit2.Call
++import retrofit2.Callback
++import retrofit2.Response
++import java.util.*
+ 
+-class EntrepriseArchiveeActivity : AppCompatActivity() {
++class EntrepriseArchiveeActivity : AppCompatActivity(), OnMapReadyCallback {
++    var entreprise: Etablissement? = null
+     override fun onCreate(savedInstanceState: Bundle?) {
+         super.onCreate(savedInstanceState)
+         setContentView(R.layout.activity_entreprise_archivee)
++        val nom = intent.getSerializableExtra("nomEntreprise") as String
++
++
++        val svc = EntrepriseService()
++        svc.query(nom, object : Callback<Result> {
++            override fun onResponse(
++                call: Call<Result>?,
++                response: Response<Result>?
++            ) {
++                if (response!!.code() == 200) {
++                    val listOfEntreprise = response.body()!!.etablissement!!
++                    entreprise = listOfEntreprise.first()
++                }
++            }
++
++            override fun onFailure(call: Call<Result>?, t: Throwable?) {
++                val builder =
++                    AlertDialog.Builder(this@EntrepriseArchiveeActivity)
++                builder.setMessage("Problème lors de l'appel au service Web")
++                builder.create().show()
++            }
++        })
++
++        val entrepriseEntity = EntrepriseEntity(
++            entreprise?.siret!!,
++            entreprise?.nom_raison_sociale,
++            entreprise?.date_creation_entreprise,
++            entreprise?.code_postal,
++            entreprise?.indicateur_champ_publipostage,
++            entreprise?.latitude,
++            entreprise?.longitude,
++            entreprise?.geo_adresse,
++            entreprise?.activite_principale,
++            entreprise?.libelle_activite_principale,
++            Calendar.getInstance().time
++        )
++
++        val rienDatabase = RIEnDatabase.getDatabaseRienDatabase(this)
++        val entrepriseDAO = rienDatabase.entrepriseDAO()
++        entrepriseDAO.insert(entrepriseEntity)
++
++        /**
++         * Affichage du nom de l'entreprise
++         */
++        val nomEntreprise = getString(R.string.nom_de_lentreprise)
++        textViewNomEntreprise.text =
++            String.format(nomEntreprise, entreprise?.nom_raison_sociale, entreprise?.siret)
++
++        /**
++         * Affichage de la date de création de l'entreprise
++         */
++        val dateCreationEntreprise = getString(R.string.date_de_la_creation_de_l_entreprise)
++        val date = entreprise?.date_creation_entreprise
++        val annee = date?.take(4)
++        val mois = date?.takeLast(2)
++        textViewDateCreationEntreprise.text =
++            String.format(dateCreationEntreprise, "01/$mois/$annee")
++
++        /**
++         * Affichage de l'activité principale de l'entreprise
++         */
++        val activitePrincipaleEntreprise = getString(R.string.activite_de_l_entreprise)
++        textViewActiviteEntreprise.text = String.format(
++            activitePrincipaleEntreprise,
++            entreprise?.libelle_activite_principale_entreprise
++        )
++
++        /**
++         * Affichage du code postal de l'entreprise
++         */
++        val codePostalEntreprise = getString(R.string.code_postal_de_l_entreprise)
++        textViewCodePostalEntreprise.text =
++            String.format(codePostalEntreprise, entreprise?.code_postal)
++
++        /**
++         * Affichage du statut l'entreprise
++         */
++        val statutEntreprise = getString(R.string.entreprise_active)
++        if (entreprise?.indicateur_champ_publipostage == "A") {
++            textViewEntrepriseIsActive.text = String.format(statutEntreprise, "✔")
++            textViewEntrepriseIsActive.setTextColor(Color.GREEN)
++        } else {
++            textViewEntrepriseIsActive.text = String.format(statutEntreprise, "❌")
++            textViewEntrepriseIsActive.setTextColor(Color.RED)
++        }
++
++        /**
++         * Gestion de la map
++         */
++        val mapFragment =
++            supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
++        mapFragment.getMapAsync(this)
+     }
+-}
+\ No newline at end of file
++
++    override fun onMapReady(googleMap: GoogleMap) {
++        val emplacement = LatLng(entreprise?.latitude!!, entreprise?.longitude!!)
++        googleMap.addMarker(
++            MarkerOptions()
++                .position(emplacement)
++                .title(entreprise?.nom_raison_sociale)
++        )
++
++        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(emplacement, 14f))
++    }
++
++}
+diff --git a/app/src/main/java/esimed/amattei/examen/rien/HistoryActivity.kt b/app/src/main/java/esimed/amattei/examen/rien/HistoryActivity.kt
+index a3a8be7..f755525 100644
+--- a/app/src/main/java/esimed/amattei/examen/rien/HistoryActivity.kt
++++ b/app/src/main/java/esimed/amattei/examen/rien/HistoryActivity.kt
+@@ -1,11 +1,46 @@
+ package esimed.amattei.examen.rien
+ 
++import android.content.Intent
+ import androidx.appcompat.app.AppCompatActivity
+ import android.os.Bundle
++import android.widget.ArrayAdapter
++import esimed.amattei.examen.rien.entities.EntrepriseArchiveeEntity
++import kotlinx.android.synthetic.main.activity_history.*
++import java.util.*
+ 
+ class HistoryActivity : AppCompatActivity() {
+     override fun onCreate(savedInstanceState: Bundle?) {
+         super.onCreate(savedInstanceState)
+         setContentView(R.layout.activity_history)
++
++        val rienDatabase = RIEnDatabase.getDatabaseRienDatabase(this)
++        val entrepriseArchiveeDAO = rienDatabase.entrepriseArchiveeDAO()
++
++        listResultHistoryActivity.adapter = ArrayAdapter(
++            this,
++            android.R.layout.simple_list_item_1,
++            android.R.id.text1,
++            entrepriseArchiveeDAO.returnEntrepriseArchivee().toTypedArray()
++        )
++
++        listResultHistoryActivity.setOnItemClickListener { parent, view, position, id ->
++
++            val itemEntrepriseEntity = listResultHistoryActivity
++                .adapter
++                .getItem(position) as EntrepriseArchiveeEntity
++
++            val query = itemEntrepriseEntity.nom
++                ?.lowercase(Locale.getDefault())
++                ?.replace(" ", "_")
++
++            val intent = Intent(
++                this,
++                EntrepriseArchiveeActivity::class.java
++            )
++
++            intent.putExtra("nomEntreprise", query)
++
++            startActivity(intent)
++        }
+     }
+ }
+\ No newline at end of file
+diff --git a/app/src/main/java/esimed/amattei/examen/rien/HomeActivity.kt b/app/src/main/java/esimed/amattei/examen/rien/HomeActivity.kt
+index f2d18b4..b2fcebc 100644
+--- a/app/src/main/java/esimed/amattei/examen/rien/HomeActivity.kt
++++ b/app/src/main/java/esimed/amattei/examen/rien/HomeActivity.kt
+@@ -21,5 +21,9 @@ class HomeActivity : AppCompatActivity() {
+         infoFloatButton.setOnClickListener {
+             startActivity(Intent(this, InfoActivity::class.java))
+         }
++
++        historyFloatButton.setOnClickListener {
++            startActivity(Intent(this, HistoryActivity::class.java))
++        }
+     }
+ }
+\ No newline at end of file
+diff --git a/app/src/main/java/esimed/amattei/examen/rien/LauncherActivity.kt b/app/src/main/java/esimed/amattei/examen/rien/LauncherActivity.kt
+index 46b2441..e8a09e3 100644
+--- a/app/src/main/java/esimed/amattei/examen/rien/LauncherActivity.kt
++++ b/app/src/main/java/esimed/amattei/examen/rien/LauncherActivity.kt
+@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
+ import android.os.Bundle
+ import esimed.amattei.examen.rien.entities.EntrepriseArchiveeEntity
+ import kotlinx.android.synthetic.main.activity_launcher.*
++import java.util.*
+ 
+ class LauncherActivity : AppCompatActivity() {
+     override fun onCreate(savedInstanceState: Bundle?) {
+@@ -17,14 +18,23 @@ class LauncherActivity : AppCompatActivity() {
+         val entrepriseDAO = rienDatabase.entrepriseDAO()
+         val entrepriseArchiveeDAO = rienDatabase.entrepriseArchiveeDAO()
+ 
++        var nbJoursMemoire = 1
++        val calendar = Calendar.getInstance()
++        calendar.add(Calendar.DAY_OF_YEAR, -nbJoursMemoire)
++
+ 
+         for (i in entrepriseDAO.returnSiretFromTooOldSearches()) {
+-            entrepriseArchiveeDAO.insertEntrepriseArchivee(
+-                EntrepriseArchiveeEntity(
+-                    i,
+-                    entrepriseDAO.returnNomEntrepriseFromSiret(i)
+-                )
+-            )
++            val calendrierJInsertion = toCalendar(entrepriseDAO.returnDateInsertionFromSiret(i))
++            if (calendrierJInsertion!! <= calendar) {
++                if (!entrepriseArchiveeDAO.returnSiretFromEntrepriseArchivee().contains(i)) {
++                    entrepriseArchiveeDAO.insertEntrepriseArchivee(
++                        EntrepriseArchiveeEntity(
++                            i,
++                            entrepriseDAO.returnNomEntrepriseFromSiret(i)
++                        )
++                    )
++                }
++            }
+         }
+ 
+         entrepriseDAO.deleteTooOldSearches()
+@@ -35,4 +45,10 @@ class LauncherActivity : AppCompatActivity() {
+         startActivity(intent)
+         finish()
+     }
++
++    fun toCalendar(date: Date): Calendar? {
++        val cal = Calendar.getInstance()
++        cal.time = date
++        return cal
++    }
+ }
+\ No newline at end of file
+diff --git a/app/src/main/java/esimed/amattei/examen/rien/RechercheParEntrepriseActivity.kt b/app/src/main/java/esimed/amattei/examen/rien/RechercheParEntrepriseActivity.kt
+index 07b6110..704a538 100644
+--- a/app/src/main/java/esimed/amattei/examen/rien/RechercheParEntrepriseActivity.kt
++++ b/app/src/main/java/esimed/amattei/examen/rien/RechercheParEntrepriseActivity.kt
+@@ -10,6 +10,7 @@ import android.os.Bundle
+ import android.view.View
+ import android.view.inputmethod.InputMethodManager
+ import android.widget.ArrayAdapter
++import androidx.annotation.NonNull
+ import androidx.core.view.isVisible
+ import esimed.amattei.examen.rien.entities.EntrepriseEntity
+ import esimed.amattei.examen.rien.model.Etablissement
+diff --git a/app/src/main/java/esimed/amattei/examen/rien/dao/EntrepriseArchiveeDAO.kt b/app/src/main/java/esimed/amattei/examen/rien/dao/EntrepriseArchiveeDAO.kt
+index 67a521e..79573e5 100644
+--- a/app/src/main/java/esimed/amattei/examen/rien/dao/EntrepriseArchiveeDAO.kt
++++ b/app/src/main/java/esimed/amattei/examen/rien/dao/EntrepriseArchiveeDAO.kt
+@@ -8,6 +8,9 @@ interface EntrepriseArchiveeDAO {
+     @Query("SELECT * FROM EntrepriseArchiveeEntity")
+     fun returnEntrepriseArchivee(): List<EntrepriseArchiveeEntity>
+ 
++    @Query("SELECT siret FROM EntrepriseArchiveeEntity")
++    fun returnSiretFromEntrepriseArchivee(): List<String>
++
+     @Query("SELECT nom FROM EntrepriseArchiveeEntity WHERE siret = :siret")
+     fun returnNomEntrepriseArchiveeFromSiret(siret: String): String
+ 
+diff --git a/app/src/main/java/esimed/amattei/examen/rien/dao/EntrepriseDAO.kt b/app/src/main/java/esimed/amattei/examen/rien/dao/EntrepriseDAO.kt
+index b38f0b9..8a84af0 100644
+--- a/app/src/main/java/esimed/amattei/examen/rien/dao/EntrepriseDAO.kt
++++ b/app/src/main/java/esimed/amattei/examen/rien/dao/EntrepriseDAO.kt
+@@ -2,6 +2,7 @@ package esimed.amattei.examen.rien.dao
+ 
+ import esimed.amattei.examen.rien.entities.*
+ import androidx.room.*
++import java.util.*
+ 
+ @Dao
+ interface EntrepriseDAO {
+@@ -32,6 +33,9 @@ interface EntrepriseDAO {
+     @Query("DELETE FROM EntrepriseEntity WHERE dateRecherche <= date('now','-1 day')")
+     fun deleteTooOldSearches()
+ 
++    @Query("SELECT dateRecherche FROM EntrepriseEntity WHERE siret = :siret")
++    fun returnDateInsertionFromSiret(siret: String): Date
++
+     @Query("SELECT COUNT(*) FROM EntrepriseEntity WHERE dateRecherche <= date('now','-1 day')")
+     fun countTooOldSearches(): Int
+ 
+diff --git a/app/src/main/res/layout/activity_entreprise_archivee.xml b/app/src/main/res/layout/activity_entreprise_archivee.xml
+index 3205425..78ce1b0 100644
+--- a/app/src/main/res/layout/activity_entreprise_archivee.xml
++++ b/app/src/main/res/layout/activity_entreprise_archivee.xml
+@@ -1,9 +1,79 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     xmlns:tools="http://schemas.android.com/tools"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
++    android:orientation="vertical"
+     tools:context=".EntrepriseArchiveeActivity">
+ 
+-</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
++    <TextView
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:gravity="center"
++        android:text="@string/resultat_de_votre_recherche"
++        android:textSize="30sp" />
++
++    <TextView
++        android:id="@+id/textViewNomEntrepriseHistory"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_marginStart="15dp"
++        android:layout_marginTop="15dp"
++        android:layout_marginEnd="15dp"
++        android:text="@string/nom_de_lentreprise"
++        android:textSize="20sp" />
++
++    <TextView
++        android:id="@+id/textViewDateCreationEntrepriseHistory"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_marginStart="15dp"
++        android:layout_marginTop="15dp"
++        android:layout_marginEnd="15dp"
++        android:text="@string/date_de_la_creation_de_l_entreprise"
++        android:textSize="20sp" />
++
++    <TextView
++        android:id="@+id/textViewActiviteEntrepriseHistory"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_marginStart="15dp"
++        android:layout_marginTop="15dp"
++        android:layout_marginEnd="15dp"
++        android:text="@string/activite_de_l_entreprise"
++        android:textSize="20sp" />
++
++    <LinearLayout
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_marginStart="15dp"
++        android:layout_marginTop="15dp"
++        android:layout_marginEnd="15dp"
++        android:orientation="horizontal">
++
++        <TextView
++            android:id="@+id/textViewCodePostalEntrepriseHistory"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:layout_weight="1"
++            android:text="@string/code_postal_de_l_entreprise"
++            android:textSize="20sp" />
++
++        <TextView
++            android:id="@+id/textViewEntrepriseIsActiveHistory"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:layout_weight="1"
++            android:text="@string/entreprise_active"
++            android:textSize="20sp" />
++    </LinearLayout>
++
++    <fragment
++        android:id="@+id/mapHistory"
++        class="com.google.android.gms.maps.SupportMapFragment"
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        android:layout_marginTop="15dp" />
++
++</LinearLayout>
+\ No newline at end of file
+diff --git a/app/src/main/res/layout/activity_history.xml b/app/src/main/res/layout/activity_history.xml
+index 1fd6752..09a6611 100644
+--- a/app/src/main/res/layout/activity_history.xml
++++ b/app/src/main/res/layout/activity_history.xml
+@@ -1,9 +1,15 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     xmlns:tools="http://schemas.android.com/tools"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+-    tools:context=".HistoryActivity">
++    tools:context=".HistoryActivity"
++    android:orientation="vertical">
+ 
+-</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
++    <ListView
++        android:id="@+id/listResultHistoryActivity"
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"/>
++
++</LinearLayout>
+\ No newline at end of file
+diff --git a/app/src/main/res/layout/activity_home.xml b/app/src/main/res/layout/activity_home.xml
+index af73893..14860eb 100644
+--- a/app/src/main/res/layout/activity_home.xml
++++ b/app/src/main/res/layout/activity_home.xml
+@@ -39,16 +39,36 @@
+ 
+     </androidx.cardview.widget.CardView>
+ 
+-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+-        android:id="@+id/infoFloatButton"
+-        android:layout_width="wrap_content"
++    <LinearLayout
++        android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+-        android:layout_gravity="end|bottom"
+-        android:src="@drawable/ic_info"
+-        android:contentDescription="@string/information"
++        android:gravity="center">
++
++        <com.google.android.material.floatingactionbutton.FloatingActionButton
++            android:id="@+id/historyFloatButton"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:gravity="start"
++            android:src="@drawable/ic_history"
++            android:contentDescription="@string/information"
++
++            android:layout_marginTop="100dp"
++            android:layout_margin="5dp" />
++
++        <com.google.android.material.floatingactionbutton.FloatingActionButton
++            android:id="@+id/infoFloatButton"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:gravity="end"
++            android:src="@drawable/ic_info"
++            android:contentDescription="@string/information"
++
++            android:layout_marginTop="100dp"
++            android:layout_margin="5dp" />
++
++    </LinearLayout>
++
+ 
+-        android:layout_marginTop="100dp"
+-        android:layout_margin="5dp" />
+ 
+ 
+ </LinearLayout>
+\ No newline at end of file
+diff --git a/log.txt b/log.txt
+index 09654d4..f9f9208 100644
+--- a/log.txt
++++ b/log.txt
+@@ -356,3 +356,12 @@ Changes not staged for commit:
+ no changes added to commit (use "git add" and/or "git commit -a")
+ 
+ 
++Commande git status le 27/01/2022 a 16:07:09,61 :
++
++On branch main
++Your branch is ahead of 'origin/main' by 1 commit.
++  (use "git push" to publish your local commits)
++
++nothing to commit, working tree clean
++
++
+
+

@@ -2,6 +2,7 @@ package esimed.amattei.examen.rien.dao
 
 import esimed.amattei.examen.rien.entities.*
 import androidx.room.*
+import java.util.*
 
 @Dao
 interface EntrepriseDAO {
@@ -31,6 +32,9 @@ interface EntrepriseDAO {
 
     @Query("DELETE FROM EntrepriseEntity WHERE dateRecherche <= date('now','-1 day')")
     fun deleteTooOldSearches()
+
+    @Query("SELECT dateRecherche FROM EntrepriseEntity WHERE siret = :siret")
+    fun returnDateInsertionFromSiret(siret: String): Date
 
     @Query("SELECT COUNT(*) FROM EntrepriseEntity WHERE dateRecherche <= date('now','-1 day')")
     fun countTooOldSearches(): Int

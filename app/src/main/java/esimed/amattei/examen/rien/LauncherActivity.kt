@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import esimed.amattei.examen.rien.entities.EntrepriseArchiveeEntity
 import kotlinx.android.synthetic.main.activity_launcher.*
+import java.util.*
 
 class LauncherActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,14 +18,23 @@ class LauncherActivity : AppCompatActivity() {
         val entrepriseDAO = rienDatabase.entrepriseDAO()
         val entrepriseArchiveeDAO = rienDatabase.entrepriseArchiveeDAO()
 
+        var nbJoursMemoire = 1
+        val calendar = Calendar.getInstance()
+        calendar.add(Calendar.DAY_OF_YEAR, -nbJoursMemoire)
+
 
         for (i in entrepriseDAO.returnSiretFromTooOldSearches()) {
-            entrepriseArchiveeDAO.insertEntrepriseArchivee(
-                EntrepriseArchiveeEntity(
-                    i,
-                    entrepriseDAO.returnNomEntrepriseFromSiret(i)
-                )
-            )
+            val calendrierJInsertion = toCalendar(entrepriseDAO.returnDateInsertionFromSiret(i))
+            if (calendrierJInsertion!! <= calendar) {
+                if (!entrepriseArchiveeDAO.returnSiretFromEntrepriseArchivee().contains(i)) {
+                    entrepriseArchiveeDAO.insertEntrepriseArchivee(
+                        EntrepriseArchiveeEntity(
+                            i,
+                            entrepriseDAO.returnNomEntrepriseFromSiret(i)
+                        )
+                    )
+                }
+            }
         }
 
         entrepriseDAO.deleteTooOldSearches()
@@ -34,5 +44,11 @@ class LauncherActivity : AppCompatActivity() {
         val intent = Intent(this, HomeActivity::class.java)
         startActivity(intent)
         finish()
+    }
+
+    fun toCalendar(date: Date): Calendar? {
+        val cal = Calendar.getInstance()
+        cal.time = date
+        return cal
     }
 }
