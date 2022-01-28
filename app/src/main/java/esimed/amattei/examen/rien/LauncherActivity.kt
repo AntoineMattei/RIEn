@@ -18,9 +18,12 @@ class LauncherActivity : AppCompatActivity() {
         val entrepriseDAO = rienDatabase.entrepriseDAO()
         val entrepriseArchiveeDAO = rienDatabase.entrepriseArchiveeDAO()
 
-        var nbJoursMemoire = 1
+        val nbJoursMemoire = 1
         val calendar = Calendar.getInstance()
         calendar.add(Calendar.DAY_OF_YEAR, -nbJoursMemoire)
+
+        val calendrierArchive = Calendar.getInstance()
+        calendar.add(Calendar.MONTH, -3)
 
 
         for (i in entrepriseDAO.returnSiretFromTooOldSearches()) {
@@ -30,16 +33,22 @@ class LauncherActivity : AppCompatActivity() {
                     entrepriseArchiveeDAO.insertEntrepriseArchivee(
                         EntrepriseArchiveeEntity(
                             i,
-                            entrepriseDAO.returnNomEntrepriseFromSiret(i)
+                            entrepriseDAO.returnNomEntrepriseFromSiret(i),
+                            Calendar.getInstance().time
                         )
                     )
+                    entrepriseDAO.deleteFromSiret(i)
                 }
             }
         }
 
-        entrepriseDAO.deleteTooOldSearches()
-
-        entrepriseArchiveeDAO.deleteTooOldSearchesArchivee()
+        for (i in entrepriseArchiveeDAO.returnEntrepriseArchivee()) {
+            val calendrierArchiveDelete =
+                toCalendar(entrepriseArchiveeDAO.returnDateInsertionEntrepriseArchiveeFromSiret(i.siret))
+            if (calendrierArchiveDelete!! <= calendrierArchive) {
+                entrepriseArchiveeDAO.delete(i)
+            }
+        }
 
         val intent = Intent(this, HomeActivity::class.java)
         startActivity(intent)

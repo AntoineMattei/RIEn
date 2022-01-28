@@ -2,11 +2,13 @@ package esimed.amattei.examen.rien.entities
 
 import androidx.room.*
 import org.jetbrains.annotations.NotNull
+import java.util.*
 
 @Entity
 data class EntrepriseArchiveeEntity(
     @PrimaryKey @NotNull var siret: String,
-    var nom: String? = null
+    var nom: String? = null,
+    var dateInsertion: Date
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -21,7 +23,7 @@ data class EntrepriseArchiveeEntity(
     }
 
     override fun hashCode(): Int {
-        var result = siret?.hashCode() ?: 0
+        var result = siret.hashCode()
         result = 31 * result + (nom?.hashCode() ?: 0)
         return result
     }

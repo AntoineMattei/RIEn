@@ -2,6 +2,7 @@ package esimed.amattei.examen.rien.dao
 
 import esimed.amattei.examen.rien.entities.*
 import androidx.room.*
+import java.util.*
 
 @Dao
 interface EntrepriseArchiveeDAO {
@@ -13,6 +14,9 @@ interface EntrepriseArchiveeDAO {
 
     @Query("SELECT nom FROM EntrepriseArchiveeEntity WHERE siret = :siret")
     fun returnNomEntrepriseArchiveeFromSiret(siret: String): String
+
+    @Query("SELECT dateInsertion FROM EntrepriseArchiveeEntity WHERE siret = :siret")
+    fun returnDateInsertionEntrepriseArchiveeFromSiret(siret: String): Date
 
     @Insert
     fun insertEntrepriseArchivee(entrepriseArchivee: EntrepriseArchiveeEntity)

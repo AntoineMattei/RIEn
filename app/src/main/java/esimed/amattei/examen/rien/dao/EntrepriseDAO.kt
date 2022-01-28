@@ -30,8 +30,8 @@ interface EntrepriseDAO {
     @Query("SELECT geo_adresse FROM EntrepriseEntity WHERE siret= :siret")
     fun returnGeoAdresse(siret: String): String
 
-    @Query("DELETE FROM EntrepriseEntity WHERE dateRecherche <= date('now','-1 day')")
-    fun deleteTooOldSearches()
+    @Query("DELETE FROM EntrepriseEntity WHERE siret = :siret")
+    fun deleteFromSiret(siret: String)
 
     @Query("SELECT dateRecherche FROM EntrepriseEntity WHERE siret = :siret")
     fun returnDateInsertionFromSiret(siret: String): Date
