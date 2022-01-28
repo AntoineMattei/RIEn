@@ -897,3 +897,38 @@ index 09654d4..f9f9208 100644
 +
 
 
+Commande git status le 28/01/2022 a  9:34:19,70 :
+
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	app/release/RIEn.apk
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+
+Commande git diff le 28/01/2022 a  9:34:25,61 :
+
+
+
+Commande git status le 28/01/2022 a  9:34:27,52 :
+
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	new file:   app/release/RIEn.apk
+	modified:   log.txt
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   log.txt
+
+
+
